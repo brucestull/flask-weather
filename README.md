@@ -2,6 +2,8 @@
 
 - [Flask Weather Dashboard - ChatGPT - Private](https://chatgpt.com/c/68696771-4278-8002-8097-4cc1c4ec33d3)
 
+- Weather data `json` created by code in repository [https://github.com/brucestull/python-requests-weather](https://github.com/brucestull/python-requests-weather).
+
 ## 1. **Requirements**
 - `pipenv` (optional, for virtual environment management)
 - Python
