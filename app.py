@@ -4,9 +4,7 @@ import os
 app = Flask(__name__)
 
 # Path to your JSON forecast file
-DATA_FILE = os.path.join(
-    os.path.dirname(__file__), "forecast_columbus_us_20250705_135436.json"
-)
+DATA_FILE = os.path.join(os.path.dirname(__file__), "sample_forecast.json")
 
 
 @app.route("/")
