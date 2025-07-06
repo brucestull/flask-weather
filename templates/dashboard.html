@@ -14,20 +14,22 @@
   <body class="p-4">
     <h1 class="mb-1">{{ city }}</h1>
     <h3 class="mb-4 text-secondary">{{ date }}</h3>
+
     <!-- Next 7 Days link -->
     <div class="mb-4">
       <a href="{{ url_for('summary') }}" class="btn btn-primary">
         Next 7 Days
       </a>
     </div>
+
     <div class="table-responsive">
       <table class="table table-striped align-middle">
         <thead class="table-dark">
           <tr>
             <th>Time</th>
-            <th>Temp (°C)</th>
-            <th>Feels Like (°C)</th>
-            <th>Humidity (%)</th>
+            <th>Temp</th>
+            <th>Feels Like</th>
+            <th>Humidity</th>
             <th>Condition</th>
             <th></th>
           </tr>
@@ -35,11 +37,16 @@
         <tbody>
           {% for fc in forecasts %}
             <tr>
-              <!-- only show the time part now -->
-              <td>{{ fc.dt_txt.split(" ")[1] }}</td>
-              <td>{{ fc.main.temp }}</td>
-              <td>{{ fc.main.feels_like }}</td>
-              <td>{{ fc.main.humidity }}</td>
+              <td>{{ fc.dt_txt.split(' ')[1] }}</td>
+              <td>
+                {{ fc.main.temp }}°C
+                ({{ (fc.main.temp * 9/5 + 32) | round(1) }}°F)
+              </td>
+              <td>
+                {{ fc.main.feels_like }}°C
+                ({{ (fc.main.feels_like * 9/5 + 32) | round(1) }}°F)
+              </td>
+              <td>{{ fc.main.humidity }}%</td>
               <td>{{ fc.weather[0].description.title() }}</td>
               <td>
                 <img
@@ -57,17 +64,26 @@
     <nav aria-label="Day pages">
       <ul class="pagination justify-content-center">
         <li class="page-item {% if page == 1 %}disabled{% endif %}">
-          <a class="page-link" href="{{ url_for('dashboard', page=page-1) }}">← Prev day</a>
+          <a
+            class="page-link"
+            href="{{ url_for('dashboard', page=page-1) }}"
+          >← Prev day</a>
         </li>
 
         {% for p in range(1, total_pages + 1) %}
           <li class="page-item {% if p == page %}active{% endif %}">
-            <a class="page-link" href="{{ url_for('dashboard', page=p) }}">{{ dates[p-1] }}</a>
+            <a
+              class="page-link"
+              href="{{ url_for('dashboard', page=p) }}"
+            >{{ dates[p-1] }}</a>
           </li>
         {% endfor %}
 
         <li class="page-item {% if page == total_pages %}disabled{% endif %}">
-          <a class="page-link" href="{{ url_for('dashboard', page=page+1) }}">Next day →</a>
+          <a
+            class="page-link"
+            href="{{ url_for('dashboard', page=page+1) }}"
+          >Next day →</a>
         </li>
       </ul>
     </nav>
