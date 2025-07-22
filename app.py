@@ -1,5 +1,5 @@
 # app.py
-from flask import Flask, render_template, json, request, url_for
+from flask import Flask, render_template, json, request, url_for  # noqa: F401
 import os
 from collections import OrderedDict
 from datetime import datetime
