@@ -27,7 +27,13 @@ def pick_period_entry(entries, start_hour, end_hour):
         dt = datetime.strptime(fc["dt_txt"], "%Y-%m-%d %H:%M:%S")
         if start_hour <= dt.hour < end_hour:
             bucket.append(
-                (abs((dt.hour + dt.minute / 60) - ((start_hour + end_hour) / 2)), fc)
+                (
+                    abs(
+                        (dt.hour + dt.minute / 60)
+                        - ((start_hour + end_hour) / 2)  # noqa: E501
+                    ),  # noqa: E501
+                    fc,
+                )  # noqa: E501
             )
     if not bucket:
         return None
